@@ -120,7 +120,13 @@ class String
     # "zebra".caesar_cipher(4)    #=> "difve"
     def caesar_cipher(num)
 
-        
+        alphabet = ('a'..'z').to_a
+
+        string  = ''
+
+        self.each_char {|char| string += alphabet[(alphabet.index(char) + num) % alphabet.length ]}
+
+        string
 
     end
 end
