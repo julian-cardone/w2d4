@@ -13,6 +13,10 @@
 # pow(4, 3) # => 64
 def pow(base, exponent)
 
+    return 1 if exponent == 0
+
+    base * pow(base, exponent - 1)
+
 end
 
 
@@ -36,6 +40,11 @@ end
 # lucas_number(9)   # =>    76
 def lucas_number(n)
 
+    return 2 if n == 0
+    return 1 if n == 1
+
+    lucas_number(n-1)+lucas_number(n-2)
+
 end
 
 
@@ -52,6 +61,10 @@ end
 # sum_array([4, 10, -1, 2]) # => 15
 def sum_array(array)
 
+    return 0 if array == []
+
+    sum = array.pop + sum_array(array)
+
 end
 
 
@@ -67,6 +80,11 @@ end
 # reverse_string("internet")    # => "tenretni"
 # reverse_string("friends")     # => "sdneirf"
 def reverse_string(str)
+
+    return '' if str == ''
+
+    string = str.slice!(-1) + reverse_string(str)
+
 
 end
 
@@ -100,5 +118,9 @@ end
 #     2-dimensional array: [['some data']]
 #     3-dimensional array: [[['some data']]]
 def flatten(data)
+
+   return [data] if !data.is_a?(Array)
+
+   data = data.inject([]){|acc, ele| acc + flatten(ele)}
 
 end
